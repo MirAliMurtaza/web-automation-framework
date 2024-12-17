@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.1.0 http://maven.apache.org/xsd/settings-1.1.0.xsd" xmlns="http://maven.apache.org/SETTINGS/1.1.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <servers>
+
+        <server>
+            <id>internal-artifactory</id>
+            <username>vend-user</username>
+            <password>Vend123456</password>
+        </server>
+    </servers>
+
+
+    <profiles>
+        <profile>
+
+            <repositories>
+                <repository>
+                    <id>internal-artifactory</id>
+                    <name>VD Internal Repo</name>
+                    <url>http://52.86.153.55:8081/artifactory/vend-libs-local/qa</url>
+                    <layout>default</layout>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </repository>
+
+
+
+                <!--    -->
+                <!--    -->
+                <!--    <repository>-->
+                <!--      <id>central</id>-->
+                <!--      <name>Central Repository</name>-->
+                <!--      <url>https://repo.maven.apache.org/maven2</url>-->
+                <!--      <layout>default</layout>-->
+                <!--      <snapshots>-->
+                <!--        <enabled>false</enabled>-->
+                <!--      </snapshots>-->
+                <!--    </repository>-->
+            </repositories>
+
+            <mirrors>
+                <mirror>
+                    <id>internal-artifactory</id>
+                    <name>VD Internal Repo</name>
+<!--                    <url>http://52.86.153.55:8081/artifactory/vend-libs-local/qa</url>-->
+                    <url>http://vend-user:Vend123456@52.86.153.55:8081/artifactory/vend-libs-local/qa</url>   <!--URL updated because in POM.xml have this url and it was causing issues due to mismatch-->
+                    <mirrorOf>*</mirrorOf>
+                    <layout>default</layout>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </mirror>
+            </mirrors>
+
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>central</id>
+                    <name>Central Repository</name>
+                    <url>https://repo.maven.apache.org/maven2</url>
+                    <layout>default</layout>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                    <releases>
+                        <updatePolicy>never</updatePolicy>
+                    </releases>
+                </pluginRepository>
+            </pluginRepositories>
+            <id>artifactory</id>
+        </profile>
+    </profiles>
+    <activeProfiles>
+        <activeProfile>artifactory</activeProfile>
+    </activeProfiles>
+</settings>
